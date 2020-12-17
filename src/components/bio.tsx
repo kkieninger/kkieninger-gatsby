@@ -12,35 +12,35 @@ import Image from "gatsby-image"
 import { rhythm } from "../utils/typography"
 
 const Bio: FC = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50, quality: 95) {
-            width
-            height
-            src
-            srcSet
-            base64
-            tracedSVG
-            srcWebp
-            srcSetWebp
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query BioQuery {
+  //     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+  //       childImageSharp {
+  //         fixed(width: 50, height: 50, quality: 95) {
+  //           width
+  //           height
+  //           src
+  //           srcSet
+  //           base64
+  //           tracedSVG
+  //           srcWebp
+  //           srcSetWebp
+  //         }
+  //       }
+  //     }
+  //     site {
+  //       siteMetadata {
+  //         author {
+  //           name
+  //           summary
+  //         }
+  //         social {
+  //           twitter
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
   const { author, social } = data.site.siteMetadata
   return (
@@ -50,7 +50,7 @@ const Bio: FC = () => {
         marginBottom: rhythm(2.5),
       }}
     >
-      <Image
+      {/* <Image
         fixed={data.avatar.childImageSharp.fixed}
         alt={author.name}
         style={{
@@ -62,7 +62,7 @@ const Bio: FC = () => {
         imgStyle={{
           borderRadius: `50%`,
         }}
-      />
+      /> */}
       <p>
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
