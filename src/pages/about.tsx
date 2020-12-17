@@ -1,25 +1,13 @@
-import React from "react"
-import { PageProps, graphql } from "gatsby"
+import React, { FC } from "react"
+import { PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-type Props = {
-  site: {
-    siteMetadata: {
-      title: string;
-    }
-  }
-}
-
-const About = ({ data, location }: PageProps<Props>) => {
-  const siteTitle = data.site.siteMetadata.title
+const About: FC<PageProps> = () => {
 
   return (
-    <Layout
-      location={location}
-      title={siteTitle}
-    >
+    <Layout>
       <SEO title="About Kevin" />
       <section className="about">
         this is the about page
@@ -29,13 +17,3 @@ const About = ({ data, location }: PageProps<Props>) => {
 }
 
 export default About;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
