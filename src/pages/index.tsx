@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { PageProps, graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -7,30 +7,23 @@ import SEO from "../components/seo"
 import { Job } from "../types/jobs";
 import { JobListing } from "../components/JobListing";
 
-type Props = {
-  site: {
-    siteMetadata: {
-      title: string;
+interface Props extends PageProps {
+  data: {
+    currentJobs: {
+      nodes: Job[];
     }
-  }
-  currentJobs: {
-    nodes: Job[];
-  }
-  previousJobs: {
-    nodes: Job[];
+    previousJobs: {
+      nodes: Job[];
+    }
   }
 }
 
-const Index = ({ data, location }: PageProps<Props>) => {
-  const siteTitle = data.site.siteMetadata.title
+const Index: FC<Props> = ({ data }) => {
   const currentJobs = data.currentJobs.nodes;
   const previousJobs = data.previousJobs.nodes;
 
   return (
-    <Layout
-      location={location}
-      title={siteTitle}
-    >
+    <Layout>
       <SEO title="Home Page" />
       <div className="bio">
         <p>
@@ -56,11 +49,6 @@ export default Index
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     currentJobs: allJobs(filter: {current: {eq: true}}) {
       nodes {
         company
